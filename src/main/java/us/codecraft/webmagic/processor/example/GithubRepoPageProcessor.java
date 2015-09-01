@@ -30,6 +30,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
         page.putField("readme", page.getHtml().xpath("//div[@id='readme']/tidyText()"));
 
         // 部分三：从页面发现后续的url地址来抓取
+        // 从页面提取所有匹配正则表达式的连接，加入数组
         page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/\\w+/\\w+)").all());
     }
 
@@ -45,15 +46,15 @@ public class GithubRepoPageProcessor implements PageProcessor {
         mySpider.addUrl("https://github.com/code4craft");
         mySpider.addPipeline(new ConsolePipeline());
         mySpider.thread(5); //开启5个线程抓取
-        mySpider.run();
+        //mySpider.run();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("The demo stopped!");
-        System.out.println("To more usage, try to customize your own Spider!");
-        System.exit(0);
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("The demo stopped!");
+//        System.out.println("To more usage, try to customize your own Spider!");
+//        System.exit(0);
     }
 }

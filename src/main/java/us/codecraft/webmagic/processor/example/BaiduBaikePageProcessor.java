@@ -20,8 +20,8 @@ public class BaiduBaikePageProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
-        page.putField("name", page.getHtml().css("h1.title div.lemmaTitleH1","text").toString());
-        page.putField("description", page.getHtml().xpath("//div[@id='lemmaContent-0']//div[@class='para']/allText()"));
+        page.putField("name", page.getHtml().css("h1 h1.lemmaTitle","innerHTML").toString());
+        //page.putField("description", page.getHtml().xpath("//div[@id='lemmaContent-0']//div[@class='para']/allText()"));
     }
 
     @Override
@@ -33,14 +33,14 @@ public class BaiduBaikePageProcessor implements PageProcessor {
         //single download
         Spider spider = Spider.create(new BaiduBaikePageProcessor()).thread(2);
         String urlTemplate = "http://baike.baidu.com/search/word?word=%s&pic=1&sug=1&enc=utf8";
-        ResultItems resultItems = spider.<ResultItems>get(String.format(urlTemplate, "水力发电"));
-        System.out.println(resultItems);
 
-        //multidownload
+//        ResultItems resultItems = spider.<ResultItems>get(String.format(urlTemplate, "水力发电"));
+//        System.out.println(resultItems);
+
+        //multi-download
         List<String> list = new ArrayList<String>();
         list.add(String.format(urlTemplate,"风力发电"));
         list.add(String.format(urlTemplate,"太阳能"));
-        list.add(String.format(urlTemplate,"地热发电"));
         list.add(String.format(urlTemplate,"地热发电"));
         List<ResultItems> resultItemses = spider.<ResultItems>getAll(list);
         for (ResultItems resultItemse : resultItemses) {

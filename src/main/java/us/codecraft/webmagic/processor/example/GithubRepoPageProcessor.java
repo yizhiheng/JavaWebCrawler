@@ -48,13 +48,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
         mySpider.thread(5); //开启5个线程抓取
         //mySpider.run();
 
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println("The demo stopped!");
-//        System.out.println("To more usage, try to customize your own Spider!");
-//        System.exit(0);
+
+
     }
 }
